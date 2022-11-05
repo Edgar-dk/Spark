@@ -22,6 +22,8 @@ object Executor2 {
     val client: Socket = Server.accept()
     val in: InputStream = client.getInputStream
     val objIn = new ObjectInputStream(in)
+    /*3.最后得到数据的时候，转换成Subtask对象，
+    *   使用的模板是SubTask，数据方式是task*/
     val task: SubTask = objIn.readObject().asInstanceOf[SubTask]
     val ints: List[Int] = task.compute()
     println("计算节点计算的结果为：" + ints)

@@ -19,31 +19,24 @@ object Driver {
     *   主要的就是内存，内存往外面发送数据，就是OutPut的方式*/
     val out: OutputStream = client1.getOutputStream
     val objOut1 = new ObjectOutputStream(out)
-
     val task1 = new task1()
     val SubTask = new SubTask
     SubTask.logic=task1.logic
     /*01.取前面两个数据，*/
     SubTask.data=task1.data.take(2)
-
-
     objOut1.writeObject(SubTask)
     objOut1.flush()
     objOut1.close()
     client1.close()
     println("客户端数据发送好完毕")
 
-
     val out2: OutputStream = client2.getOutputStream
     val objOut2 = new ObjectOutputStream(out2)
-
     val task2 = new task1()
     val SubTask2 = new SubTask
     SubTask2.logic=task2.logic
     /*02.取最后两个数据*/
     SubTask2.data=task2.data.takeRight(2)
-
-
     objOut2.writeObject(SubTask2)
     objOut2.flush()
     objOut2.close()
